@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const webpack = require('webpack')
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -20,6 +21,7 @@ module.exports = {
     hot: true,
   },
   plugins: [
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),  
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html')
